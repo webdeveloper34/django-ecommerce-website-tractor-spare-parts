@@ -1,0 +1,37 @@
+{% extends 'store/base.html' %}
+{% block content %}
+<div class="text-center mb-5">
+  <h1>Welcome to Tractor Spare Parts</h1>
+  <p>Find all genuine parts for your tractor – fast, reliable, and affordable!</p>
+</div>
+
+<!-- Carousel -->
+<div id="carouselExampleIndicators" class="carousel slide mb-4" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://via.placeholder.com/1200x400?text=Tractor+Parts+Deals" class="d-block w-100" alt="Banner">
+    </div>
+    <div class="carousel-item">
+      <img src="https://via.placeholder.com/1200x400?text=Genuine+Spare+Parts" class="d-block w-100" alt="Banner">
+    </div>
+  </div>
+</div>
+
+<!-- Featured Products -->
+<div class="row">
+  {% for product in products %}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text">PKR {{ product.price }}</p>
+          <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">View</a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p>No products available.</p>
+  {% endfor %}
+</div>
+{% endblock %}
